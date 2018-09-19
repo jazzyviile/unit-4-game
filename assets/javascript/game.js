@@ -1,25 +1,70 @@
-$(document).ready(function() {
-var random_result;
-var losses;
-var wins;
-
-for(var i = 0; i < 4; i++){
+ 
+var win= 0;
+ var losses= 0;
+ var total= 0;
+ var Random= 0;
+ var crystal1= 0;
+ var crystal2= 0;
+ var crystal3= 0;
+ var crystal4= 0;
+$( document ).ready(function(){
+ init();
+ $('#crystal1').on ('click', function(){
+    total= total + crystal1;
+    $("#total").html("<p>Your Total Score: "+ total+"</p>");
+    checkTotal();
     
-    var random = Math.floor(Math.random() = 12);
-    console.log(random);
-    var crystal = $("<div>");
-        crystal.attr("class", 'crystal')
+    
+});	
+$('#crystal2').on ('click', function(){
+    total= total + crystal2;
+    $("#total").html("<p>Your Total Score: "+ total+"</p>");
+    checkTotal();
+    
+    
+});	
+$('#crystal3').on ('click', function(){
+    total= total + crystal3;
+    $("#total").html("<p>Your Total Score: "+ total+"</p>");
+    checkTotal();
+    
+    
+});	
+$('#crystal4').on ('click', function(){
+    total= total + crystal4;
+    $("#total").html("<p>Your Total Score: "+ total+"</p>");
+    checkTotal();
 
-    $(".crystals").append(crystal);   
-    console.log("hello word");
+    
+});	
+function init() {
+  Random=Math.floor(Math.random()*(101)+19);
+  $("#random").html("<p>Number to Match: "+ Random+"</p>");
+  total= 0;
+  $("#total").html("<p>Your Total Score: "+ total+"</p>");
+
+ crystal1= Math.floor(Math.random()*(11)+1);
+ crystal2= Math.floor(Math.random()*(11)+1);
+ crystal3= Math.floor(Math.random()*(11)+1);
+ crystal4= Math.floor(Math.random()*(11)+1);
+ }
+ 
+ function checkTotal() {
+     
+     if(total >Random){
+         losses++
+     $("#losses").html("<p>Losses: "+ losses+"</p>");	
+    alert("You Lose");
+    init();
+    
 }
-}
+     if(total ===Random){
+         win++
+     $("#wins").html("<p>Wins: "+ win+"</p>");	
+    alert("You win");
+    init();
 
-
-
-
-// game based on 4 crystal and random number
-//each crystal has a random number between 1-12
-//a new number will be generated every single time the game is either won or lost
-//each time you click a crystal it will add the results up until total score is mett
-//if its equal you win if not you lose
+    
+ }
+ }
+});
